@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Card } from './card';
-import { Suit } from './suit.enum';
-import { Rank } from './rank.enum';
-import { CardFormatter } from './card-formatter';
+import { GameService } from './game.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +9,9 @@ import { CardFormatter } from './card-formatter';
 })
 export class AppComponent implements OnInit {
   title: string;
-  sampleCard: Card;
 
   ngOnInit() {
-    const cf = CardFormatter.getInstance();
-    this.sampleCard = new Card(Suit.Spades, Rank.Ace);
-    this.title  = cf.ShortHand(this.sampleCard);
+    this.title  = 'Black Jack';
   }
 
 }

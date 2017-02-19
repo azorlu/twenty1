@@ -1,0 +1,11 @@
+#dealer {
+  background-color: gray;
+  width: 30%;
+  padding: 2%;
+}
+
+#player {
+  background-color: lightblue;
+  width: 30%;
+  padding: 2%;
+}

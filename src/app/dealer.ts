@@ -20,7 +20,7 @@ export class Dealer {
     Dealer.instance = this;
   }
 
-  public CreateDeck(jokerCount?: Number): Deck {
+  public getDeck(jokerCount?: Number): Deck {
 
     const cards = new Array<Card>();
     const suitValues = EnumExtension.getValues(Suit);
@@ -40,7 +40,7 @@ export class Dealer {
       }
     }
 
-    return new Deck(this.Shuffle(cards));
+    return new Deck(this.shuffle(cards));
   }
 
   private getRandomInt(minVal: number, maxVal: number, inclusive?: boolean): number {
@@ -50,7 +50,7 @@ export class Dealer {
     return Math.floor(Math.random() * (max - min + k)) + min;
   }
 
-  public Shuffle(cards: Array<Card>): Array<Card> {
+  public shuffle(cards: Array<Card>): Array<Card> {
     for (let i = 0; i < cards.length; i++) {
       const r = this.getRandomInt(i, cards.length - 1, true);
       [cards[i], cards[r]] = [cards[r], cards[i]];

@@ -1,0 +1,16 @@
+<h2>{{ gameResultText }} </h2>
+
+<div id = "dealer">
+  <h3>Dealer</h3>
+<app-hand [hand] = "dealerHand" [value] = "dealerHandValue"></app-hand>
+</div>
+
+<div id = "player">
+  <h3>Player</h3>
+<app-hand [hand] = "playerHand" [value] = "playerHandValue"></app-hand>
+
+<button (click)="onHit()">Hit</button>
+<button (click)="onStand()">Stand</button>
+<button (click)="onStartNewGame()">New Game</button>
+
+</div>

@@ -14,15 +14,19 @@ export class Card {
     return this.rank;
   }
 
-  public IsJoker(): boolean {
+  public isJoker(): boolean {
     return this.suit === Suit.None && this.rank === Rank.None;
   }
 
-  public IsFaceCard(): boolean {
+  public isFaceCard(): boolean {
     return this.rank >= 11;
   }
 
+  public isAce(): boolean {
+    return this.rank === 1;
+  }
+
   public toString(): string {
-    return this.IsJoker() ? 'Joker' : `${Rank[this.rank]} of ${Suit[this.suit]}`;
+    return this.isJoker() ? 'Joker' : `${Rank[this.rank]} of ${Suit[this.suit]}`;
   }
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Card } from '../card';
-import { Suit } from '../suit.enum';
-import { Rank } from '../rank.enum';
 
 @Component({
   selector: 'app-card',
@@ -11,16 +9,12 @@ import { Rank } from '../rank.enum';
 })
 export class CardComponent implements OnInit {
 
-  card: Card;
+  @Input() card: Card;
+
   constructor() {
    }
 
   ngOnInit() {
-     this.card = new Card(Suit.Spades, Rank.Jack);
-  }
-
-  setCard(cardParam: Card) {
-    this.card = cardParam;
   }
 
 }
