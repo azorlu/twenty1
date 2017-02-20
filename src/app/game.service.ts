@@ -34,12 +34,14 @@ export class GameService {
     this.deck = this.dealDeck();
     this.dealerHand = this.dealHand();
     this.playerHand = this.dealHand();
-    this.evaluateGame();
+    this.gameResult = GameResult.Undecided;
+    this.evaluateHands();
   }
 
   playerHit() {
     this.playerHand.addCard(this.dealCard());
     this.evaluateGame();
+    this.continuePlayerGame();
   }
 
   private dealerHit() {
@@ -49,35 +51,39 @@ export class GameService {
 
   playerStand() {
     this.evaluateGame();
-    this.continueGame();
+    this.continueDealerGame();
   }
 
-  private continueGame() {
-    while (this.gameResult === GameResult.Undecided && this.dealerHandValue < this.standValue) {
+  private continueDealerGame() {
+    while (this.dealerHandValue < this.standValue || this.dealerHandValue < this.playerHandValue) {
       this.dealerHit();
     }
   }
 
-  evaluateGame() {
+  private continuePlayerGame() {
+    if (this.playerHandValue < this.targetValue && this.dealerHandValue < this.targetValue) {
+      this.gameResult = GameResult.Undecided;
+    }
+  }
+
+  private evaluateHands() {
     this.dealerHandValue = this.getHandValue(this.dealerHand);
     this.playerHandValue = this.getHandValue(this.playerHand);
+  }
 
-    if (this.playerHandValue > this.targetValue) {
-      this.gameResult = GameResult.DealerWins;
-    } else if (this.dealerHandValue > this.targetValue) {
+  evaluateGame() {
+    this.evaluateHands();
+
+    if (this.playerHandValue <= this.targetValue && this.dealerHandValue > this.targetValue) {
       this.gameResult = GameResult.PlayerWins;
-    } else if (this.dealerHandValue === this.playerHandValue) {
+    } else if (this.playerHandValue > this.targetValue && this.dealerHandValue <= this.targetValue) {
+      this.gameResult = GameResult.DealerWins;
+    } else if (this.playerHandValue > this.dealerHandValue) {
+      this.gameResult = GameResult.PlayerWins;
+    } else if (this.playerHandValue === this.dealerHandValue) {
       this.gameResult = GameResult.Push;
-    } else if (this.playerHandValue === this.targetValue) {
-      this.gameResult = GameResult.PlayerWins;
-    } else if (this.dealerHandValue === this.targetValue) {
+    } else if (this.playerHandValue < this.dealerHandValue) {
       this.gameResult = GameResult.DealerWins;
-    } else if (this.playerHandValue > this.dealerHandValue && this.dealerHandValue >= this.standValue) {
-      this.gameResult = GameResult.PlayerWins;
-    } else if (this.playerHandValue < this.dealerHandValue && this.dealerHandValue >= this.standValue) {
-      this.gameResult = GameResult.DealerWins;
-    } else {
-      this.gameResult = GameResult.Undecided;
     }
   }
 
@@ -107,7 +113,7 @@ export class GameService {
     let value = 0;
     let hasAnyAce = false;
     // count all aces as 1 (soft value)
-    // and if the total is less than (target value - 10) add 10 to total
+    // and if soft total + 10 is less than target value add 10 to total
     // as only one ace may need to be counted as 11 (hard value)
     for (const card of hand.Cards) {
       value += card.isFaceCard() ? 10 : card.Rank;
@@ -115,7 +121,7 @@ export class GameService {
         hasAnyAce = true;
       }
     }
-    if (hasAnyAce && value - 10 <= this.targetValue) {
+    if (hasAnyAce && value + 10 <= this.targetValue) {
       value += 10;
     }
     return value;

@@ -17,6 +17,7 @@ export class BoardComponent implements OnInit {
   playerHandValue: number;
   gameResult: GameResult;
   gameResultText: string;
+  gameCompleted: boolean;
 
   constructor(public gameService: GameService) {
     this.onStartNewGame();
@@ -55,6 +56,7 @@ export class BoardComponent implements OnInit {
     this.displayHandValues();
     this.gameResult = this.gameService.gameResult;
     this.gameResultText = GameResult[this.gameResult];
+    this.gameCompleted = this.gameResult !== GameResult.Undecided;
   }
 
 }
