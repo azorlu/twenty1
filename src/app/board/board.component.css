@@ -1,11 +1,15 @@
-#dealer {
-  background-color: gray;
-  width: 60%;
-  padding: 2%;
+.board {
+  background-color: darkslategray;
+  height: 80%;
+}
+.dealer {
+  background-color: cadetblue;
 }
 
-#player {
-  background-color: lightblue;
-  width: 60%;
-  padding: 2%;
+.player {
+  background-color: lightskyblue;
+}
+
+.actions {
+  background-color: lightslategrey;
 }

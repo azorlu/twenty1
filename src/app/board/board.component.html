@@ -1,18 +1,30 @@
-<h2>{{ gameResultText }} </h2>
+<div class="board">
+  <md-toolbar>
+    <h3>{{ gameResultText }} </h3>
 
-<div>
-  <button (click)="onHit()" [disabled]="gameCompleted">Hit</button>
-  <button (click)="onStand()" [disabled]="gameCompleted">Stand</button>
-  <button (click)="onStartNewGame()">New Game</button>
-</div>
-<br />
+    <span class="spacer"></span>
 
-<div id="dealer">
-  <h3>Dealer</h3>
-  <app-hand [hand]="dealerHand" [value]="dealerHandValue"></app-hand>
-</div>
+    <button md-button-raised (click)="onHit()" [disabled]="gameCompleted">Hit</button>
+    <button md-button-raised (click)="onStand()" [disabled]="gameCompleted">Stand</button>
+    <button md-button-raised (click)="onStartNewGame()">New Game</button>
+  </md-toolbar>
 
-<div id="player">
-  <h3>Player</h3>
-  <app-hand [hand]="playerHand" [value]="playerHandValue"></app-hand>
+  <md-grid-list cols="2" rowHeight="2:1">
+    <md-grid-tile colspan="1">
+      <md-grid-tile-header>
+        Dealer: {{ dealerHandValue }}
+      </md-grid-tile-header>
+      <div class="dealer">
+        <app-hand [hand]="dealerHand" [value]="dealerHandValue"></app-hand>
+      </div>
+    </md-grid-tile>
+    <md-grid-tile colspan="1">
+      <md-grid-tile-header>
+        Player: {{ playerHandValue }}
+      </md-grid-tile-header>
+      <div class="player">
+        <app-hand [hand]="playerHand" [value]="playerHandValue"></app-hand>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
 </div>

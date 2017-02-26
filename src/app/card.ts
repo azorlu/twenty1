@@ -29,4 +29,5 @@ export class Card {
   public toString(): string {
     return this.isJoker() ? 'Joker' : `${Rank[this.rank]} of ${Suit[this.suit]}`;
   }
+
 }

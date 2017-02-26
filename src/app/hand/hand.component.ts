@@ -17,4 +17,5 @@ export class HandComponent implements OnInit {
   ngOnInit() {
   }
 
+
 }

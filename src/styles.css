@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic';
+@import '~@angular/material/core/theming/prebuilt/purple-green.css';
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.md-slider-horizontal {
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  margin: 1.5em 0;
+  display: block;
+}
+
+#page-padding {
+  padding: 0 1.5em 1.5em 1.5em;
+}

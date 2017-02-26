@@ -9,9 +9,17 @@ import { GameService } from './game.service';
 })
 export class AppComponent implements OnInit {
   title: string;
+  isDarkTheme: boolean;
+
+  constructor(){}
 
   ngOnInit() {
     this.title  = 'Black Jack';
+    this.isDarkTheme = true;
+  }
+
+  showDialog() {
+
   }
 
 }
