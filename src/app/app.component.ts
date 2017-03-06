@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
   title: string;
   isDarkTheme: boolean;
 
-  constructor(){}
+  constructor() { }
 
   ngOnInit() {
-    this.title  = 'Black Jack';
+    this.title = 'Black Jack';
     this.isDarkTheme = true;
   }
 
