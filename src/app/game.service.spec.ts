@@ -9,7 +9,7 @@ describe('GameService', () => {
     });
   });
 
-  xit('should ...', inject([GameService], (service: GameService) => {
+  it('should ...', inject([GameService], (service: GameService) => {
     expect(service).toBeTruthy();
   }));
 });
