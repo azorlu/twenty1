@@ -52,7 +52,7 @@ export class CardFormatter {
 
   // Bridge type shorthand
   public ShortHand(card: Card): string {
-    return card.IsJoker() ?
+    return card.isJoker() ?
       CardFormatter.suitSymbols[card.Suit] :
       CardFormatter.suitSymbols[card.Suit] +
       CardFormatter.rankSymbols[card.Rank];
